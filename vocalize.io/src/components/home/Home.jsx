@@ -6,13 +6,36 @@ import "./Home.css";
 function Home() {
   const [isLogoShifted, setIsLogoShifted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [url, setUrl] = useState("");
+  const [uploadedFile, setUploadedFile] = useState(null);
 
-  const handleGenerate = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      alert("Summary generated!"); // Replace with actual functionality
-    }, 5000); // Simulate a 5-second loading time
+  // const handleGenerate = () => {
+  //   setIsLoading(true);
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //     alert("Summary generated!"); // Replace with actual functionality
+  //   }, 5000); // Simulate a 5-second loading time
+  // };
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0]; // Get the first file from the input
+    if (file) {
+      setUploadedFile(file);
+      alert(`File uploaded: ${file.name}`);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setUrl(e.target.value); // Update the state with the input value
+  };
+
+  const handleSubmit = () => {
+    if (url.trim() === "") {
+      alert("Please enter a valid URL.");
+      return;
+    }
+    alert(`URL Submitted: ${url}`);
+    // You can process the URL here, e.g., send it to a server
   };
 
   return (
@@ -44,27 +67,54 @@ function Home() {
 
       {/* Shifted Logo and Home Content */}
       {isLogoShifted && (
-        <motion.div
-          className="home-content"
-          // style={{
-          //   marginTop: "100px", // Adjust margin-top to create space below the logo
-          // }}
-        >
+        <motion.div className="home-content">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
+            transition={{ duration: 1 }}
           >
-            <h1>Welcome to the Summary Generator</h1>
-            <p>Click the button below to generate your summary.</p>
-            <motion.button
+            <input
+              type="text"
+              placeholder="Paste YouTube video URL here..."
+              onChange={handleInputChange}
+              value={url}
+              className="url-input"
+            ></input>
+            <p className="text">OR</p>
+
+            {/* <motion.button
               className="generate-button"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              onClick={handleGenerate}
+              // onClick={handleGenerate}
             >
               Generate Summary
-            </motion.button>
+            </motion.button> */}
+
+            <motion.div
+              className="upload-container"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
+              <motion.label
+                className="upload-button"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <input
+                  type="file"
+                  accept=".txt, .pdf, .docx"
+                  onChange={handleFileUpload}
+                  style={{ display: "none" }} // Hide the default file input
+                />
+                UPLOAD DOCUMENT +
+              </motion.label>
+              <span className="accepted-formats">
+                (Upload .mp3, .mp4, .txt, .pdf files)
+              </span>
+            </motion.div>
+            {uploadedFile && <p>Uploaded File: {uploadedFile.name}</p>}
           </motion.div>
         </motion.div>
       )}

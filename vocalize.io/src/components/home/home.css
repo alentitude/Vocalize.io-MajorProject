@@ -45,7 +45,7 @@
 }
 
 .home-content {
-  max-width: 600px;
+  max-width: 200mm;
   margin: 20px 0;
 }
 
@@ -62,4 +62,63 @@
 
 .generate-button:hover {
   background-color: #0056b3;
+}
+
+.text {
+  font-family: "Poppins" serif;
+  color: #fff;
+  font-weight: 600;
+}
+
+.url-input::placeholder {
+  font-family: "Poppins" serif;
+  color: #ffffff;
+}
+
+.url-input {
+  font-family: "Poppins" serif;
+  width: 200mm;
+  height: 40px;
+  border-radius: 18px;
+  padding-left: 15px;
+  border-style: solid;
+  border-color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-weight: 200;
+  font-size: 16px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.125);
+}
+
+.upload-container {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  gap: 10px;
+}
+
+.accepted-formats {
+  font-family: "Poppins" serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.upload-button {
+  font-family: "Poppins" serif;
+  font-weight: bold;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.125);
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-style: solid;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  margin-left: 16.5rem;
+}
+
+.upload-button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
 }
