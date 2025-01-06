@@ -50,18 +50,22 @@
 }
 
 .generate-button {
-  padding: 10px 20px;
-  font-size: 18px;
-  color: #fff;
-  background-color: #007bff;
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #f97e20;
+  font-family: "Poppins" serif;
+  font-weight: 600;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.125);
 }
 
 .generate-button:hover {
-  background-color: #0056b3;
+  background-color: #ff9544;
 }
 
 .text {
@@ -116,7 +120,7 @@
   border-radius: 4px;
   cursor: pointer;
   text-align: center;
-  margin-left: 16.5rem;
+  margin-left: 18.2rem;
 }
 
 .upload-button:hover {
