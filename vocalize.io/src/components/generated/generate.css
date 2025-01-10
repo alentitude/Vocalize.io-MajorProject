@@ -1,15 +1,33 @@
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .generate-container {
   padding: 1rem;
   min-height: 100vh;
-  background-color: #fff9f5;
+  background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #d16ba5);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
 }
 
 .logo {
-  color: #ff923f;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
+  color: #fff;
+  font-size: 3rem;
+  margin-left: 5rem;
+  margin-top: -4px;
 }
-
+.lang {
+  color: #fff;
+  font-size: 1.2rem;
+}
 .main-content {
   display: flex;
   gap: 2rem;
@@ -17,64 +35,55 @@
   margin: 0 auto;
 }
 
-/* .input-section {
-    flex: 1;
-  } */
-
 .language-selector {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
+  margin-left: -4rem;
+  margin-top: 2rem;
 }
 
 .language-selector select {
   padding: 0.5rem;
-  border: 1px solid #ff923f;
+  border: none;
   border-radius: 4px;
   background-color: white;
   color: #333;
 }
 
 h2 {
-  color: #ff923f;
+  color: #fff;
 }
+
 .summary-section {
   margin-bottom: 2rem;
-  width: calc(100% - 2rem);
+  /* width: calc(100% - 2rem); */
+  width: 600px;
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .summary-section textarea {
-  width: 100%;
+  width: 120%;
   height: 200px;
   padding: 1rem;
   border-radius: 8px;
   resize: vertical;
-  border-color: #ff923f;
+  border: none;
 }
-
-/* .audio-section {
-    margin-bottom: 2rem;
-  }
-   */
-/* .audio-player {
-    background-color: #ff7f41;
-    padding: 1rem;
-    border-radius: 8px;
-    color: white;
-  } */
 
 .text-download-section {
   display: flex;
   flex-direction: row;
-  gap: 10rem;
+  gap: 20rem;
   min-width: 1000px;
   justify-content: center;
   align-items: center;
+  margin-left: -4rem;
 }
+
 .download-section {
   display: flex;
   flex-direction: column;
@@ -89,17 +98,18 @@ h2 {
   padding: 1rem;
   border: none;
   border-radius: 8px;
-  background-color: #ff923f;
+  background-color: #feb47b; /* Updated color */
   color: white;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: transform 0.2s, background-color 0.2s;
   width: 100%;
   max-width: 250px;
 }
 
 .download-btn:hover {
-  background-color: #ff923f;
+  background-color: #ff7e5f; /* Darker color on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
 @media (max-width: 768px) {
@@ -110,4 +120,7 @@ h2 {
   .download-section {
     min-width: 100%;
   }
+}
+.audio-section {
+  margin-left: -4rem;
 }

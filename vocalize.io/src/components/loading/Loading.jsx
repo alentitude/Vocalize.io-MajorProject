@@ -1,23 +1,51 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Assuming React Router is used
-// import "./Loading.css"; // Add any styling if needed
-
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Loading.css";
 function Loading() {
   const navigate = useNavigate();
-  const redirectDelay = 5; // Variable for redirection time (in seconds)
+  const redirectDelay = 20;
+  const messages = [
+    "Please wait. Summarising in progress...",
+    "Generating summary for you...",
+    "Almost there...",
+    "Any minute now...",
+  ];
+
+  const [messageIndex, setMessageIndex] = useState(0);
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     navigate("/generate");
+  //   }, redirectDelay * 1000);
+  //   return () => clearTimeout(timer);
+  // }, [navigate]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate("/generate"); // Redirect to 'Generate' component
-    }, redirectDelay * 1000); // Convert to milliseconds
+    const slideInterval = 5000;
+    const messageTimer = setInterval(() => {
+      setMessageIndex((prevIndex) => (prevIndex + 1) % messages.length);
+    }, slideInterval);
 
-    return () => clearTimeout(timer); // Cleanup the timer
-  }, [navigate]);
+    const redirectTimer = setTimeout(() => {
+      navigate("/generate");
+    }, redirectDelay * 1000);
+
+    return () => {
+      clearInterval(messageTimer);
+      clearTimeout(redirectTimer);
+    };
+  }, []);
 
   return (
-    <div className="loading-container">
-      <h1>Loading...</h1>
-      <p>Please wait while we process your request.</p>
+    <div className="loading-box">
+      <div className="banter-loader">
+        {Array.from({ length: 9 }).map((_, index) => (
+          <div key={index} className="banter-loader__box"></div>
+        ))}
+      </div>
+      <div className="loadingtext">
+        <p>{messages[messageIndex]}</p>
+      </div>
     </div>
   );
 }
