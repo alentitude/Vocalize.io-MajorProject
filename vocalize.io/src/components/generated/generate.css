@@ -1,113 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .generate-container {
   padding: 1rem;
   min-height: 100vh;
-  background-color: #fff9f5;
+  background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #d16ba5);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 }
 
 .logo {
-  color: #ff923f;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
+  color: #fff;
+  font-size: 3rem;
+  text-align: left;
+  margin-left: 5rem;
+  margin-top: -24px;
+}
+
+.lang {
+  margin-left: 620px;
+  color: #fff;
+  font-size: 1rem;
 }
 
 .main-content {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
 }
-
-/* .input-section {
-    flex: 1;
-  } */
 
 .language-selector {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .language-selector select {
   padding: 0.5rem;
-  border: 1px solid #ff923f;
-  border-radius: 4px;
-  background-color: white;
+  border: none;
+  border-radius: 10px;
+  background-color: #ffffffed;
   color: #333;
+  font-size: 1rem;
 }
 
-h2 {
-  color: #ff923f;
-}
 .summary-section {
-  margin-bottom: 2rem;
-  width: calc(100% - 2rem);
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
 }
 
 .summary-section textarea {
   width: 100%;
-  height: 200px;
+  height: 250px;
   padding: 1rem;
   border-radius: 8px;
   resize: vertical;
-  border-color: #ff923f;
+  border: none;
+  color: #ede3db;
+  font-size: 1rem;
 }
 
-/* .audio-section {
-    margin-bottom: 2rem;
-  }
-   */
-/* .audio-player {
-    background-color: #ff7f41;
-    padding: 1rem;
-    border-radius: 8px;
-    color: white;
-  } */
-
-.text-download-section {
-  display: flex;
-  flex-direction: row;
-  gap: 10rem;
-  min-width: 1000px;
-  justify-content: center;
-  align-items: center;
-}
 .download-section {
   display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 300px;
-  min-width: 300px;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
   gap: 1rem;
+  width: 100%;
+  margin-top: 3rem;
 }
 
 .download-btn {
   padding: 1rem;
   border: none;
-  border-radius: 8px;
-  background-color: #ff923f;
-  color: white;
+  border-radius: 10px;
+  background-color: #ffffffed;
+  color: rgb(68, 58, 58);
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: transform 0.2s, background-color 0.2s;
   width: 100%;
   max-width: 250px;
 }
 
 .download-btn:hover {
-  background-color: #ff923f;
+  background-color: #ffffff;
+  transform: scale(1.05);
+}
+
+.audio-section {
+  margin-top: 4rem;
+  width: 100%;
+  text-align: center;
+}
+
+.play {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #ffffffed;
+}
+
+audio::-webkit-media-controls-volume-slider {
+  background-color: #B1D4E0;
+  border-radius: 25px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 1024px) {
+  .summary-section textarea {
+    height: 200px;
+  }
+
+  .logo {
+    font-size: 2.5rem;
+    margin-left: 3rem;
+  }
 }
 
 @media (max-width: 768px) {
   .main-content {
-    flex-direction: column;
+    width: 95%;
   }
 
   .download-section {
-    min-width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .download-btn {
+    max-width: 90%;
+  }
+
+  .lang {
+    margin-left: 0;
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 2rem;
+    margin-left: 1rem;
+  }
+
+  .language-selector select {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+
+  .summary-section textarea {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+
+  .download-btn {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+
+  .play {
+    font-size: 14px;
   }
 }
