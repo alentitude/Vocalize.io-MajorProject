@@ -31,7 +31,7 @@ const Generate = () => {
             <label className="lang">Language:</label>
             <select value={language} onChange={handleLanguageChange}>
               <option value="English">English</option>
-              <option value="German">German</option>
+              <option value="Malayalam">Malayalam</option>
               <option value="Spanish">Spanish</option>
               <option value="French">French</option>
             </select>

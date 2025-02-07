@@ -50,18 +50,22 @@
 }
 
 .generate-button {
-  padding: 10px 20px;
-  font-size: 18px;
-  color: #fff;
-  background-color: #007bff;
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #f97e20;
+  font-family: "Poppins" serif;
+  font-weight: 600;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.125);
 }
 
 .generate-button:hover {
-  background-color: #0056b3;
+  background-color: #ff9544;
 }
 
 .text {
@@ -96,6 +100,48 @@
   gap: 10px;
 }
 
+.input-selection {
+  font-family: "Poppins" serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #ffffff;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.selbox {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.125);
+  border-style: solid;
+  border-color: white;
+  border-width: 2px;
+  color: white;
+  font-family: "Poppins" serif;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.text-input {
+  font-family: "Poppins" serif;
+  width: 200mm;
+  padding-top: 12px;
+  padding-left: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  height: 300px;
+  background-color: rgba(255, 255, 255, 0.275);
+  border-width: 1.5px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: white;
+  color: white;
+}
+
 .accepted-formats {
   font-family: "Poppins" serif;
   font-weight: 600;
@@ -112,11 +158,12 @@
   font-size: 1rem;
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
+  border-width: 2px;
   border-style: solid;
   border-radius: 4px;
   cursor: pointer;
   text-align: center;
-  margin-left: 16.5rem;
+  margin-left: 18.2rem;
 }
 
 .upload-button:hover {
