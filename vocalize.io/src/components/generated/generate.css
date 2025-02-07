@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @keyframes gradient {
   0% {
@@ -18,7 +18,7 @@
   background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #d16ba5);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
 
@@ -186,7 +186,6 @@ audio::-webkit-media-controls-volume-slider {
     font-size: 14px;
   }
 }
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 @keyframes gradient {
   0% {

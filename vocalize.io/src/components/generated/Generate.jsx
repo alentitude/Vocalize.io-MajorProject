@@ -4,7 +4,6 @@ import "./generate.css";
 const Generate = () => {
   const [language, setLanguage] = useState("English");
   const [summary, setSummary] = useState("");
-  const [audioLength, setAudioLength] = useState("03:41");
 
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
