@@ -32,22 +32,50 @@ function Home() {
     setUploadedFile(null);
   };
 
-  const handleSubmit = () => {
-    if (url.trim() === "" && !uploadedFile) {
-      alert("Please enter a valid URL.");
+  const handleSubmit = async () => {
+    const formData = new FormData();
+
+    formData.append("language", "en"); // Change language as needed
+
+    if (inputType === "text" && textInput.trim() !== "") {
+      formData.append("input_type", "text");
+      formData.append("text", textInput);
+    } else if (inputType === "url" && url.trim() !== "") {
+      formData.append("input_type", "youtube");
+      formData.append("youtube_url", url);
+    } else if (inputType === "url" && uploadedFile) {
+      formData.append("input_type", "file");
+      formData.append("file", uploadedFile);
+    } else {
+      alert("Invalid input. Please enter valid data.");
       return;
     }
 
-    if (inputType === "text" && textInput.trim() === "") {
-      alert("Please enter some text for summarization.");
-      return;
-    }
+    console.log("Data being sent:", [...formData.entries()]);
+    setIsLoading(true);
 
-    setIsLoading(true); // Set loading state
-    // setTimeout(() => {
-    //   setIsLoading(false); // Simulate loading complete after 5 seconds
-    //   alert("Summary generated!"); // Placeholder for further actions
-    // }, 5000);
+    try {
+      const response = await fetch(
+        "https://6480-14-139-189-220.ngrok-free.app/summarize",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to summarize input.");
+      }
+
+      const data = await response.json();
+      console.log("Summary:", data.summary);
+      alert("Summary generated! Check the console for details.");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
