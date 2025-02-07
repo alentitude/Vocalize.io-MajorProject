@@ -14,7 +14,8 @@
 
 .generate-container {
   padding: 1rem;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #d16ba5);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
@@ -27,7 +28,7 @@
   font-size: 3rem;
   text-align: left;
   margin-left: 5rem;
-  margin-top: -4px;
+  margin-top: -100px;
 }
 
 .lang {
@@ -49,7 +50,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
 }
 
 .language-selector select {
@@ -85,7 +86,7 @@
   justify-content: center;
   gap: 1rem;
   width: 100%;
-  margin-top: 3rem;
+  margin-top: 10rem;
 }
 
 .download-btn {
@@ -294,7 +295,7 @@ audio::-webkit-media-controls-volume-slider {
 }
 
 .audio-section {
-  margin-top: 4rem;
+  margin-top: 2rem;
   width: 100%;
   text-align: center;
 }
