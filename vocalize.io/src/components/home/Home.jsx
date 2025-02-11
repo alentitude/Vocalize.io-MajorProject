@@ -1,5 +1,5 @@
-// src/components/Home.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { color, motion } from "framer-motion";
 import Loading from "../loading/Loading";
 import "./Home.css";
@@ -11,6 +11,8 @@ function Home() {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [inputType, setInputType] = useState("url");
   const [textInput, setTextInput] = useState("");
+  const [isSummaryGenerated, setIsSummaryGenerated] = useState(false);
+  const navigate = useNavigate();
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -56,7 +58,7 @@ function Home() {
 
     try {
       const response = await fetch(
-        "https://6480-14-139-189-220.ngrok-free.app/summarize",
+        "https://eminent-monthly-bluegill.ngrok-free.app/summarize",
         {
           method: "POST",
           body: formData,
@@ -70,6 +72,8 @@ function Home() {
       const data = await response.json();
       console.log("Summary:", data.summary);
       alert("Summary generated! Check the console for details.");
+      setIsSummaryGenerated(true);
+      navigate("/generate", { state: { summary: data.summary } });
     } catch (error) {
       console.error("Error:", error);
       alert("Something went wrong.");
@@ -81,6 +85,7 @@ function Home() {
   return (
     <div className="home-container">
       {!isLoading ? (
+        !isSummaryGenerated ? (
         <>
           <motion.div
             className="logo-container"
@@ -229,11 +234,18 @@ function Home() {
             </motion.div>
           )}
         </>
-      ) : (
-        <Loading />
-      )}
-    </div>
-  );
+) : (
+  <div className="summary-container">
+    {/* Render the next page content here */}
+    <h2>Summary Generated!</h2>
+    <p>Check the console for details.</p>
+  </div>
+)
+) : (
+<Loading />
+)}
+</div>
+);
 }
 
 export default Home;
