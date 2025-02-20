@@ -14,8 +14,8 @@
 
 .generate-container {
   padding: 1rem;
-  min-height: 100vh; /* Ensure it grows dynamically */
-  background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #d16ba5);
+  min-height: 100vh; 
+  background: linear-gradient(50deg, #38a1ec, #f39d5c, #f97fe6);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
   font-family: "Poppins", sans-serif;
@@ -23,13 +23,13 @@
 }
 
 
-.logo {
+/* .logo {
   color: #fff;
   font-size: 3rem;
   text-align: left;
   margin-left: 5rem;
   margin-top: -100px;
-}
+} */
 
 .lang {
   margin-left: 620px;
@@ -69,7 +69,7 @@
   text-align: center;
 }
 
-.summary-section textarea {
+/* .summary-section textarea {
   width: 100%;
   height: 250px;
   padding: 1rem;
@@ -78,16 +78,16 @@
   border: none;
   color: #ede3db;
   font-size: 1rem;
-}
+} */
 
-.download-section {
+/* .download-section {
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 1rem;
   width: 100%;
   margin-top: 10rem;
-}
+} */
 
 .download-btn {
   padding: 1rem;
@@ -107,11 +107,11 @@
   transform: scale(1.05);
 }
 
-.audio-section {
+/* .audio-section {
   margin-top: 4rem;
   width: 100%;
   text-align: center;
-}
+} */
 
 
 audio::-webkit-media-controls-panel {
@@ -184,10 +184,9 @@ audio::-webkit-media-controls-volume-slider {
     font-size: 15px;
     color: #fff; /* Changed to white */
   }
-  
 }
 
-@keyframes gradient {
+/* @keyframes gradient {
   0% {
     background-position: 0% 50%;
   }
@@ -197,7 +196,7 @@ audio::-webkit-media-controls-volume-slider {
   100% {
     background-position: 0% 50%;
   }
-}
+} */
 
 
 .logo {
@@ -205,46 +204,46 @@ audio::-webkit-media-controls-volume-slider {
   font-size: 3rem;
   text-align: left;
   margin-left: 5rem;
-  margin-top: -4px;
+  margin-top: -8px;
 }
 
-.lang {
+/* .lang {
   margin-left: 620px;
   color: #fff;
   font-size: 1rem;
-}
+} */
 
-.main-content {
+/* .main-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
   max-width: 1000px;
   margin: 0 auto;
-}
+} */
 
-.language-selector {
+/* .language-selector {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-top: 2rem;
-}
+} */
 
-.language-selector select {
+/* .language-selector select {
   padding: 0.5rem;
   border: none;
   border-radius: 10px;
   background-color: #ffffffed;
   color: #333;
   font-size: 1rem;
-}
+} */
 
-.summary-section {
+/* .summary-section {
   margin-top: 1rem;
   width: 100%;
   max-width: 800px;
   text-align: center;
-}
+} */
 
 .summary-section textarea {
   width: 100%;
@@ -267,7 +266,7 @@ audio::-webkit-media-controls-volume-slider {
   margin-top: 3rem;
 }
 
-.download-btn {
+/* .download-btn {
   padding: 1rem;
   border: none;
   border-radius: 10px;
@@ -278,12 +277,12 @@ audio::-webkit-media-controls-volume-slider {
   transition: transform 0.2s, background-color 0.2s;
   width: 100%;
   max-width: 250px;
-}
+} */
 
-.download-btn:hover {
+/* .download-btn:hover {
   background-color: #ffffff;
   transform: scale(1.05);
-}
+} */
 
 .audio-section {
   margin-top: 2rem;
@@ -324,7 +323,7 @@ audio {
 }
 
 
-audio::-webkit-media-controls-panel {
+/* audio::-webkit-media-controls-panel {
   background-color: #ffffffed;
 }
 
@@ -333,10 +332,10 @@ audio::-webkit-media-controls-volume-slider {
   border-radius: 25px;
   padding-left: 8px;
   padding-right: 8px;
-}
+} */
 
 /* Media queries for smaller screens */
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .summary-section textarea {
     height: 200px;
   }
@@ -345,9 +344,9 @@ audio::-webkit-media-controls-volume-slider {
     font-size: 2.5rem;
     margin-left: 3rem;
   }
-}
+} */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .main-content {
     width: 95%;
   }
@@ -366,9 +365,9 @@ audio::-webkit-media-controls-volume-slider {
     text-align: center;
     margin-top: 1rem;
   }
-}
+} */
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .logo {
     font-size: 2rem;
     margin-left: 1rem;
@@ -389,11 +388,11 @@ audio::-webkit-media-controls-volume-slider {
     padding: 0.8rem;
   }
 
-  .playing {
+  .play {
     font-family: "Poppins", sans-serif;
     font-size: 15px;
     color: #fff;
   }
   
   
-}
+} */
