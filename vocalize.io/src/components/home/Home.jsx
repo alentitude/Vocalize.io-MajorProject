@@ -80,7 +80,15 @@ function Home() {
       console.log("Summary:", data.summary);
       alert("Summary generated! Check the console for details.");
       setIsSummaryGenerated(true);
-      navigate("/generate", { state: { summary: data.summary } });
+      // navigate("/generate", { state: { summary: data.summary } });
+      navigate("/generate", { 
+        state: { 
+          summary: data.translated_summary, //translated summary
+          originalSummary: data.summary,    //original summary
+          language:language        //language
+        } 
+      });
+      
     } catch (error) {
       console.error("Error:", error);
       alert("Something went wrong.");

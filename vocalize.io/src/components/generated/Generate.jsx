@@ -6,7 +6,7 @@ const Generate = () => {
   const location = useLocation();
   const [language, setLanguage] = useState("English");
   const [summary, setSummary] = useState("");
-  const [originalSummary, setOriginalSummary] = useState(""); // To store the original English summary
+  const [originalSummary, setOriginalSummary] = useState("");
   const [audioUrl, setAudioUrl] = useState("");
 
   const languageCodes = {
@@ -29,9 +29,19 @@ const Generate = () => {
   };
 
   useEffect(() => {
-    if (location.state && location.state.summary) {
-      setSummary(location.state.summary);
-      setOriginalSummary(location.state.summary); // Store the original summary
+    if (location.state) {
+    setSummary(location.state.summary || "");
+    setOriginalSummary(location.state.originalSummary || "");
+      
+    // console.log("Received Language Code:", location.state.language);
+
+    const selectedLang = Object.keys(languageCodes).find(
+      (key) => languageCodes[key] === location.state.language
+      );
+
+      // console.log("Mapped Language Name:", selectedLang);
+
+      setLanguage(selectedLang ? selectedLang : "English");
     }
   }, [location.state]);
 
@@ -39,17 +49,15 @@ const Generate = () => {
     const selectedLanguage = e.target.value;
     setLanguage(selectedLanguage);
 
-    if (selectedLanguage === "English") {
-      setSummary(originalSummary); // Revert to the original summary when English is selected
+    if (languageCodes[selectedLanguage] === "en") {
+      setSummary(originalSummary);
       return;
     }
 
     const targetLang = languageCodes[selectedLanguage];
-
     if (targetLang) {
       try {
-        // Split the summary into smaller chunks (e.g., by sentences)
-        const chunks = summary.split(/(?<=[.!?])\s+/); // Splitting by sentence
+        const chunks = originalSummary.split(/(?<=[.!?])\s+/);
         const translatedChunks = [];
 
         for (const chunk of chunks) {
@@ -61,13 +69,12 @@ const Generate = () => {
 
           if (response.ok) {
             const result = await response.json();
-            translatedChunks.push(result[0][0][0]); // Add the translated chunk to the array
+            translatedChunks.push(result[0][0][0]);
           } else {
             console.error("Translation failed for chunk:", chunk, response.status);
           }
         }
 
-        // Join the translated chunks and update the summary
         setSummary(translatedChunks.join(" "));
       } catch (error) {
         console.error("Error while translating text:", error);
@@ -79,28 +86,10 @@ const Generate = () => {
     const url = `https://eminent-monthly-bluegill.ngrok-free.app/download?file_path=${filePath}`;
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", filePath.split("/").pop()); // Set the download attribute with the file name
+    link.setAttribute("download", filePath.split("/").pop());
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
-
-  const handleDownloadPDF = () => {
-    handleDownload("./outputs/summary.pdf");
-  };
-
-  const handleDownloadBraille = () => {
-    handleDownload("./outputs/summary.brf");
-  };
-
-  const handleDownloadAudio = () => {
-    handleDownload("./outputs/summary.mp3");
-  };
-
-  const handlePlayAudio = () => {
-    setAudioUrl(
-      "https://eminent-monthly-bluegill.ngrok-free.app/download?file_path=./outputs/summary.mp3"
-    );
   };
 
   return (
@@ -127,21 +116,9 @@ const Generate = () => {
             />
           </div>
           <div className="download-section">
-            <button className="download-btn pdf" onClick={handleDownloadPDF}>
-              DOWNLOAD .pdf
-            </button>
-            <button
-              className="download-btn braille"
-              onClick={handleDownloadBraille}
-            >
-              DOWNLOAD .brf (BRAILLE)
-            </button>
-            <button
-              className="download-btn audio"
-              onClick={handleDownloadAudio}
-            >
-              DOWNLOAD AUDIO SUMMARY
-            </button>
+            <button className="download-btn pdf" onClick={() => handleDownload("./outputs/summary.pdf")}>DOWNLOAD .pdf</button>
+            <button className="download-btn braille" onClick={() => handleDownload("./outputs/summary.brf")}>DOWNLOAD .brf (BRAILLE)</button>
+            <button className="download-btn audio" onClick={() => handleDownload("./outputs/summary.mp3")}>DOWNLOAD AUDIO SUMMARY</button>
           </div>
           <div className="audio-section">
             <p className="play">Listen to your summarized content</p>
@@ -152,7 +129,7 @@ const Generate = () => {
                   Your browser does not support the audio element.
                 </audio>
               ) : (
-                <button className="play-btn" onClick={handlePlayAudio}>
+                <button className="play-btn" onClick={() => setAudioUrl("https://eminent-monthly-bluegill.ngrok-free.app/download?file_path=./outputs/summary.mp3")}>
                   Play Audio
                 </button>
               )}

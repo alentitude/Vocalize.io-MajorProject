@@ -16,8 +16,8 @@
   padding: 1rem;
   min-height: 100vh; 
   background: linear-gradient(50deg, #38a1ec, #f39d5c, #f97fe6);
-  background-size: 400% 400%;
-  animation: gradient 10s ease infinite;
+  background-size: 300% 300%;
+  animation: gradient 12s ease infinite;
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
 }
