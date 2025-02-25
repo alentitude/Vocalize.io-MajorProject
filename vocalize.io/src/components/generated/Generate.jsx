@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./generate.css";
+import Tloading from "../tloading/tloading";
+import { Link } from "react-router-dom";
 
 const Generate = () => {
   const location = useLocation();
@@ -8,6 +10,7 @@ const Generate = () => {
   const [summary, setSummary] = useState("");
   const [originalSummary, setOriginalSummary] = useState("");
   const [audioUrl, setAudioUrl] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const languageCodes = {
     English: "en",
@@ -30,17 +33,13 @@ const Generate = () => {
 
   useEffect(() => {
     if (location.state) {
-    setSummary(location.state.summary || "");
-    setOriginalSummary(location.state.originalSummary || "");
+      setSummary(location.state.summary || "");
+      setOriginalSummary(location.state.originalSummary || "");
       
-    // console.log("Received Language Code:", location.state.language);
-
-    const selectedLang = Object.keys(languageCodes).find(
-      (key) => languageCodes[key] === location.state.language
+      const selectedLang = Object.keys(languageCodes).find(
+        (key) => languageCodes[key] === location.state.language
       );
-
-      // console.log("Mapped Language Name:", selectedLang);
-
+      
       setLanguage(selectedLang ? selectedLang : "English");
     }
   }, [location.state]);
@@ -48,12 +47,13 @@ const Generate = () => {
   const handleLanguageChange = async (e) => {
     const selectedLanguage = e.target.value;
     setLanguage(selectedLanguage);
-
+    
     if (languageCodes[selectedLanguage] === "en") {
       setSummary(originalSummary);
       return;
     }
-
+    
+    setLoading(true);
     const targetLang = languageCodes[selectedLanguage];
     if (targetLang) {
       try {
@@ -80,6 +80,7 @@ const Generate = () => {
         console.error("Error while translating text:", error);
       }
     }
+    setLoading(false);
   };
 
   const handleDownload = (filePath) => {
@@ -94,8 +95,10 @@ const Generate = () => {
 
   return (
     <div className="generate-container">
-      <h1 className="logo">Vocalize.io</h1>
-
+      <h1 className="logo">
+        <Link to="/" className="home-link">Vocalize.io</Link>
+      </h1>
+      <p className="tagline">smart transcription. simplified.</p>
       <div className="main-content">
         <div className="input-section">
           <div className="language-selector">
@@ -109,11 +112,13 @@ const Generate = () => {
             </select>
           </div>
           <div className="summary-section">
-            <textarea
-              value={summary}
-              onChange={(e) => setSummary(e.target.value)}
-              placeholder="Text will be displayed here."
-            />
+            {loading ? <Tloading /> : (
+              <textarea
+                value={summary}
+                onChange={(e) => setSummary(e.target.value)}
+                placeholder="Text will be displayed here."
+              />
+            )}
           </div>
           <div className="download-section">
             <button className="download-btn pdf" onClick={() => handleDownload("./outputs/summary.pdf")}>DOWNLOAD .pdf</button>
@@ -121,7 +126,7 @@ const Generate = () => {
             <button className="download-btn audio" onClick={() => handleDownload("./outputs/summary.mp3")}>DOWNLOAD AUDIO SUMMARY</button>
           </div>
           <div className="audio-section">
-            <p className="play">Listen to your summarized content</p>
+            <p className="play" style={{ color: "white" }}>Listen to your summarized content</p>
             <div className="audio-player">
               {audioUrl ? (
                 <audio controls>
