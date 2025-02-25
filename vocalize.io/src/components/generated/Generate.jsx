@@ -126,7 +126,7 @@ const Generate = () => {
             <button className="download-btn audio" onClick={() => handleDownload("./outputs/summary.mp3")}>DOWNLOAD AUDIO SUMMARY</button>
           </div>
           <div className="audio-section">
-            <p className="play" style={{ color: "white" }}>Listen to your summarized content</p>
+            <p className="play" style={{ color: "white" }}>Listen to the summarized content</p>
             <div className="audio-player">
               {audioUrl ? (
                 <audio controls>
