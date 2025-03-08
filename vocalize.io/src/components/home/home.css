@@ -175,6 +175,12 @@
   color: white;
 }
 
+.word-count {
+  font-family: "Poppins" serif;
+  color: white;
+  font-weight: 600;
+}
+
 .accepted-formats {
   font-family: "Poppins" serif;
   font-weight: 600;
