@@ -43,6 +43,8 @@ function Home() {
     setWordCount(0);
   };
 
+  window.fileCache = {};
+
   const handleSubmit = async () => {
     if (inputType === "text" && wordCount < 25) {
       alert("Summary generation requires at least 25 words.");
@@ -61,15 +63,23 @@ function Home() {
       formData.append("youtube_url", url);
     } else if (inputType === "url" && uploadedFile) {
       formData.append("input_type", "file");
-      formData.append("file", uploadedFile);
+      formData.append("file_name", uploadedFile.name);
+      window.fileCache[uploadedFile.name] = uploadedFile;
     } else {
       alert("Invalid input. Please enter valid data.");
       return;
     }
+
+    console.log("FormData contents:");
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
+
     sessionStorage.setItem(
       "summaryFormData",
       JSON.stringify(Object.fromEntries(formData.entries()))
     );
+    sessionStorage.removeItem("summaryInProgress");
 
     navigate("/loading");
     console.log("Data being sent:", [...formData.entries()]);

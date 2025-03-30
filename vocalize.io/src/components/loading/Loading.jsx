@@ -21,17 +21,32 @@ function Loading() {
     const fetchData = async () => {
       const storedFormData = sessionStorage.getItem("summaryFormData");
       if (!storedFormData) {
-        alert("No input data found. Redirecting...");
-        navigate("/");
+        console.error("Error: No data found in sessionStorage.");
         return;
+      } else {
+        console.log("Session data:", storedFormData);
       }
+
+      if (sessionStorage.getItem("summaryInProgress")) return;
+      sessionStorage.setItem("summaryInProgress", "true");
 
       const formData = new FormData();
       const parsedData = JSON.parse(storedFormData);
 
       for (const key in parsedData) {
-        formData.append(key, parsedData[key]);
+        if (key === "file_name") {
+          const file = window.fileCache[parsedData[key]]; // Retrieve the file from cache
+          if (file) {
+            formData.append("file", file);
+          } else {
+            console.error("File not found in cache!");
+          }
+        } else {
+          formData.append(key, parsedData[key]);
+        }
       }
+
+      console.log("Final FormData before sending:", [...formData.entries()]);
 
       try {
         const response = await fetch(
@@ -39,6 +54,9 @@ function Loading() {
           {
             method: "POST",
             body: formData,
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
           }
         );
 
@@ -56,6 +74,7 @@ function Loading() {
             language: parsedData.language,
           },
         });
+        sessionStorage.removeItem("summaryInProgress");
       } catch (error) {
         console.error("Error:", error);
         alert("Something went wrong.");
